@@ -33,6 +33,7 @@ namespace Calendar
             InitializeDictionary();
             InitializeTimePickers();
             InitializeTimer();
+            BuildEventsOnScreen(GetList(DateTime.Now));
         }
 
         // Общее время (нельзя менять в программе)
@@ -78,7 +79,7 @@ namespace Calendar
             list.Add(new Holiday("holiday 1", "description of holiday 1"));
             list.Add(new Reminder("reminder 1", "description of reminder 1", DateTime.Now));
             list.Add(new Holiday("holiday 2", "description of holiday 2"));
-            calendarEvents["2023-01-08"] = list;
+            calendarEvents[DateTime.Now.ToString("yyyy-MM-dd")] = list;
         }
 
         // Удаление события из dataGridView и из календаря
