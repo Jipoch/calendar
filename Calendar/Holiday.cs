@@ -6,7 +6,6 @@
         {
             Title = title;
             Description = description;
-            EventStart = "";
         }
     }
 }

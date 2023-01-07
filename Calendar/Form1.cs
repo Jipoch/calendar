@@ -8,10 +8,13 @@ namespace Calendar
 {
     public partial class Form1 : Form
     {
+        // Обновление текущей даты
         private void TimerEventProcessor(object sender, EventArgs e)
         {
             timePicker.Value = DateTime.Now;
         }
+
+        // Обновление данных в dataGridView
         private void CalendarEventProcessor(object sender, EventArgs e)
         {
             BuildEventsOnScreen(GetList(dateTimePicker1.Value));
@@ -32,10 +35,13 @@ namespace Calendar
             InitializeTimer();
         }
 
+        // Общее время (нельзя менять в программе)
         private DateTimePicker timePicker;
 
+        // Мапа событий и дат
         private Dictionary<string, BindingList<CalendarEvent>> calendarEvents;
 
+        // Инициализация общего времени
         private void InitializeTimePickers()
         {
             timePicker = new DateTimePicker();
@@ -54,6 +60,7 @@ namespace Calendar
             dateTimePicker1.ValueChanged += new EventHandler(CalendarEventProcessor);
         }
 
+        // инициализация таймера на постоянное обновление времени
         private void InitializeTimer()
         {
             Timer timer = new Timer();
@@ -62,6 +69,7 @@ namespace Calendar
             timer.Start();
         }
 
+        // Инициализация мапы событий календаря с заполнением
         private void InitializeDictionary()
         {
             calendarEvents = new Dictionary<string, BindingList<CalendarEvent>>();
@@ -70,9 +78,10 @@ namespace Calendar
             list.Add(new Holiday("holiday 1", "description of holiday 1"));
             list.Add(new Reminder("reminder 1", "description of reminder 1", DateTime.Now));
             list.Add(new Holiday("holiday 2", "description of holiday 2"));
-            calendarEvents["2023-01-06"] = list;
+            calendarEvents["2023-01-08"] = list;
         }
 
+        // Удаление события из dataGridView и из календаря
         private void buttonRemove_Click(object sender, EventArgs e)
         {
             foreach (DataGridViewRow item in dataGridView1.SelectedRows)
@@ -91,6 +100,7 @@ namespace Calendar
             timePickerCreate.Enabled = false;
         }
 
+        // Добавление новой записи в календарь
         private void buttonAdd_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(textTitle.Text) || string.IsNullOrEmpty(textDescription.Text))
@@ -112,7 +122,7 @@ namespace Calendar
             }
         }
 
-
+        // Получение списка событий на конкретную дату
         private BindingList<CalendarEvent> GetList(DateTime date)
         {
             BindingList<CalendarEvent> calendarEventsByDate;

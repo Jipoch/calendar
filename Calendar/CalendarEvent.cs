@@ -6,13 +6,12 @@
         {
             Title = title;
             Description = description;
-            EventStart = "";
         }
 
+        // Заголовок события
         public string Title { get; set; }
 
+        // Описание события
         public string Description { get; set; }
-
-        public string EventStart { get; set; }
     }
 }

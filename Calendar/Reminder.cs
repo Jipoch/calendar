@@ -11,6 +11,7 @@ namespace Calendar
             EventStart = dateTime.ToString("HH:mm:ss");
         }
 
+        // Время начала события
         public string EventStart { get; set; }
     }
 }
